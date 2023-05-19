@@ -16,19 +16,19 @@ pipeline {
                 sh "mvn package"
             }
         }
-//         stage('docker compose') {
-//             steps {
-//                 sh "docker-compose up"
-//             }
-//         }
-//         stage('docker build') {
-//             steps {
-//                 sh "docker build -t my-movie-plan ."
-//             }
-//         }
+         stage('docker build') {
+             steps {
+                 sh "docker build -t my-movie-plan ."
+             }
+         }
+         stage('docker run postgres') {
+             steps {
+                 sh "docker run --name my-postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=my_movie_plan -p 5432:5432 -d postgres"
+            }
+         }
         stage('docker run') {
              steps {
-                 sh "docker run -p 5555:5555 --name my-movie-plan-backend --link mysql-my-movie-plan -d my-movie-plan-backend:1.0"
+                 sh "docker run -p 5555:5555 --name my-movie-plan-backend --link my-postgres -d my-movie-plan:latest"
              }
         }
     }

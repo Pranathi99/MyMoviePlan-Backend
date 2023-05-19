@@ -14,7 +14,7 @@
     <artifactId>my-movie-plan-backend</artifactId>
     <version>1.0</version>
 
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>My Movie Plan</name>
     <description>
         My Movie Plan is an online movie ticket booking web application with a rich and user-friendly interface.
@@ -65,6 +65,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
             <scope>runtime</scope>
         </dependency>
 

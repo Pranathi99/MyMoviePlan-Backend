@@ -6,21 +6,21 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Pranathi99/TestProject-Backend.git'
             }
         }
-        stage('clean') {
-            steps {
-                sh "mvn clean"
-            }
-        }
-        stage('package') {
-            steps {
-                sh "mvn package"
-            }
-        }
-         stage('docker build') {
-             steps {
-                 sh "docker build -t my-movie-plan ."
-             }
-         }
+        // stage('clean') {
+        //     steps {
+        //         sh "mvn clean"
+        //     }
+        // }
+        // stage('package') {
+        //     steps {
+        //         sh "mvn package"
+        //     }
+        // }
+        //  stage('docker build') {
+        //      steps {
+        //          sh "docker build -t my-movie-plan ."
+        //      }
+        //  }
          stage('docker run postgres') {
              steps {
                  sh "docker run --name my-postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=my_movie_plan -p 5432:5432 -d postgres"
